@@ -1,0 +1,154 @@
+<% layout('../bases/boilerplate') -%>
+<% stylesheet('stylesheets/notebook.css') -%>
+<% script('javascripts/moment.min.js') -%>
+<% script('javascripts/notebook.js') -%>
+
+<script id="notepad-new" type="text/x-handlebars-template">
+  <div class="notepad col-md-4 {{ padType }}">
+    <div class="well yellow">
+        <header class="header">
+            <input autofocus="" placeholder="Enter A title for the Notepad." class="new-todo">
+        </header>
+        <section class="notepad-body">
+        </section>
+        <footer class="footer">
+        <div class="row">
+            <p class='note-date col-md-6'>Created {{ dateFormat noteDate }}</p>
+            <p class='note-date col-md-6'>Updated {{ fromNow noteDate }}</p>
+        </div>
+        </footer>
+    </div>
+  </div>
+</script>
+<style>
+    .yellow{ background:#ffc; }
+    .green{ background:#cfc; }
+    .blue { background:#ccf; }
+    .red{ background:#f24a4a; }
+    .purple{ background:#eaafe3; }
+    .orange{ background:#f28e50; }
+    #notebook{
+        margin-top:40px;
+    }
+    .notepad-body:before {
+        /*border-left: 1px solid #F5D6D6;
+        border-right: 1px solid #F5D6D6;*/
+        content: "";
+        height: 100%;
+        left: 40px;
+        position: absolute;
+        top: 0;
+        width: 2px;
+    }
+    .notepad {
+        margin-bottom:30px;
+    }
+    .notepad .well{
+        padding: 15px 15px 15px 15px;
+        min-height: 150px;
+        -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+        -moz-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+        box-shadow: 0 1px 2px #000;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+        -webkit-transform: rotate(-.2deg);
+        -moz-transform: rotate(-.2deg);
+        -o-transform: rotate(-.2deg);*/
+    }
+
+    .notepad header {
+        background: none repeat scroll 0 0 #8D7D77;
+        border-bottom: 1px solid #6C615C;
+        border-top-left-radius: 1px;
+        border-top-right-radius: 1px;
+    }
+
+
+    .new-todo {
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.02);
+        border: medium none;
+        box-shadow: none;
+        padding: 16px 16px 16px 60px;
+        z-index: 2;
+    }
+
+    .new-todo, .edit {
+        -moz-box-sizing: border-box;
+        /*border: 1px solid #999999;*/
+        box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.2) inset;
+        color: inherit;
+        font-family: inherit;
+        font-size: 24px;
+        line-height: 1.4em;
+        margin: 0;
+        outline: medium none;
+        padding: 6px;
+        position: relative;
+        width: 100%;
+    }
+    .note-date{
+        font-size: 10px;
+    }
+
+    .notepad input::-moz-placeholder {
+        /*color: #A9A9A9;*/
+        color: #EEE;
+        font-style: italic;
+    }
+    .notepad-body{
+        min-height: 100px;
+    }
+
+    .notepad .edit {
+        display: none;
+    }
+
+    .notepad .header label {
+      font-size: 24px;
+      display: block;
+      line-height: 1.2;
+      padding: 6px;
+      transition: color 0.4s ease 0s;
+      white-space: pre;
+      margin:0;
+    }
+
+
+
+</style>
+
+<div class="page-header text-center container-fluid">
+    <div class="row">
+        <h1><span class="fa fa-anchor"></span>Notebook</h1>
+        <p>The list of all my notepads.</p>
+    </div>
+    <div class="row">
+        <a href="#" id="add_notebook" class="btn btn-primary" role="button">Add New Notepad</a>
+    </div>
+    <div id="notebook" class="row">
+        <% notepads.forEach( function( notepad ){ %>
+            <div class="notepad col-md-4">
+                <div class="well yellow">
+                    <header class="header">
+                        <div class="view">
+                            <label><%= notepad.name %></label>
+                            <!-- <button class="destroy"></button> -->
+                        </div>
+                        <input autofocus="" placeholder="<%= notepad.name %>" class="new-todo edit">
+                    </header>
+                    <section class="notepad-body">
+                    </section>
+                    <footer class="footer">
+                    <div class="row">
+                        <p class='note-date col-md-6'>Created <%=:notepad.date_created | dateFormat %></p>
+                        <p class='note-date col-md-6'>Updated <%=:notepad.date_created | fromNow %></p>
+                    </div>
+                    </footer>
+                </div>
+              </div>
+        <% }); %>
+    </div>
+</div>

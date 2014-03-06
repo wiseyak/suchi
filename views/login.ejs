@@ -1,0 +1,16 @@
+<% layout('bases/login_layout') -%>
+
+<div class="container" id="signinform">
+<!-- show any messages that come back with authentication -->
+<% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+<% } %>
+<form role="form" action="/login" class="form-signin" method="post">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <input type="text" name="email" autofocus="" value="sworup.shakya@wiseyak.com" required="" placeholder="email" autocomplete="off" class="form-control">
+    <input type="password" name="password" required="" value="password" placeholder="Password" autocomplete="off" class="form-control">
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+
+</form>
+<span>New User? <a href="/signup"> Register!</a></span>
+</div>

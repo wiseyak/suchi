@@ -1,0 +1,36 @@
+<div role="navigation" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">Suchi</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="/notebook">Notebook</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+
+            <% if(user){ %>
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Welcome <%= user.local.username %>! <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/profile">My Profile</a></li>
+                <li class="divider"></li>
+                 <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+            <% } else{ %>
+              <li><a href="/signup">Register</a></li>
+              <li><a href="/login">Login</a></li>
+            <% } %>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>

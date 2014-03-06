@@ -1,6 +1,7 @@
 // app.js
 
 var express  = require('express');
+var MongoStore = require('connect-mongo')(express);
 var ejs  = require('ejs');
 
 var engine   = require('ejs-locals');
@@ -19,7 +20,7 @@ var configDB = require('./config/database.js');
 app.engine('ejs', engine);
 
 
-mongoose.connect(configDB.url); // connect to our database
+var MongooseDb = mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -34,7 +35,11 @@ app.configure(function() {
 
     app.use(express.static(path.join(__dirname, 'public')));
     // required for passport
-    app.use(express.session({ secret: 'E#S29y&62!@G8s%5' })); // session secret
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: 'E#S29y&62!@G8s%5',
+    store: new MongoStore({
+            mongoose_connection: MongooseDb.connections[0]
+        }) })); // session secret
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions
     app.use(flash()); // use connect-flash for flash messages stored in session

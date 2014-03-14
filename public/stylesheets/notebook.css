@@ -1,3 +1,191 @@
 .page-header {
   margin: 20px 0;
 }
+
+
+.yellow{ background:#ffc; }
+.green{ background:#cfc; }
+.blue { background:#ccf; }
+.red{ background:#f24a4a; }
+.purple{ background:#eaafe3; }
+.orange{ background:#f28e50; }
+#notebook{
+    margin-top:40px;
+}
+.notepad-body:before {
+    /*border-left: 1px solid #F5D6D6;
+    border-right: 1px solid #F5D6D6;*/
+    content: "";
+    height: 100%;
+    left: 40px;
+    position: absolute;
+    top: 0;
+    width: 2px;
+}
+.notepad {
+    margin-bottom:30px;
+}
+.notepad .well{
+    padding: 15px 15px 15px 15px;
+    min-height: 150px;
+    -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+    box-shadow: 0 1px 2px #000;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    -webkit-transform: rotate(-.2deg);
+    -moz-transform: rotate(-.2deg);
+    -o-transform: rotate(-.2deg);*/
+}
+
+.notepad header {
+    background: none repeat scroll 0 0 #8D7D77;
+    border-bottom: 1px solid #6C615C;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+}
+
+
+.new-todo {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.02);
+    border: medium none;
+    box-shadow: none;
+    padding: 16px 16px 16px 60px;
+    z-index: 2;
+}
+
+.new-todo, .edit {
+    -moz-box-sizing: border-box;
+    /*border: 1px solid #999999;*/
+    box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.2) inset;
+    color: inherit;
+    font-family: inherit;
+    font-size: 24px;
+    line-height: 1.4em;
+    margin: 0;
+    outline: medium none;
+    padding: 6px;
+    position: relative;
+    width: 100%;
+}
+.note-date{
+    font-size: 10px;
+}
+
+.notepad input::-moz-placeholder {
+    /*color: #A9A9A9;*/
+    color: #EEE;
+    font-style: italic;
+}
+.notepad-body{
+    min-height: 100px;
+}
+
+.notepad .edit {
+    display: none;
+}
+
+.notepad .header label {
+  font-size: 24px;
+  display: block;
+  line-height: 1.2;
+  padding: 6px;
+  transition: color 0.4s ease 0s;
+  white-space: pre;
+  margin:0;
+}
+
+.notepad-body .new-todo{
+    /*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.02);*/
+    padding: 10px 10px 10px 40px;
+    box-shadow: none;
+}
+.notepad-body header{
+   background-color:#ffc;
+   border-bottom: 1px dotted #ADADAD;
+
+}
+
+.notepad-body input::-moz-placeholder{
+    color: #333;
+}
+.toggle-all {
+    border: medium none;
+    left: -4px;
+    position: absolute;
+    text-align: center;
+    top: -37px;
+    width: 45px;
+}
+.notes{
+    position: relative;
+    z-index: 2;
+}
+
+label[for="toggle-all"] {
+    display: none;
+}
+.todo-list{
+    margin:0;
+    padding: 0;
+    text-align: left;
+}
+
+.todo-list li {
+    list-style: none outside none;
+    border-bottom: 1px dotted #CCCCCC;
+    font-size: 24px;
+    position: relative;
+}
+
+.todo-list li .toggle:after {
+    color: #D9D9D9;
+    content: "✔";
+    font-size: 20px;
+    line-height: 43px;
+    text-shadow: 0 -1px 0 #BFBFBF;
+}
+
+.todo-list li .toggle {
+    border: medium none;
+    bottom: 0;
+    height: auto;
+    margin: auto 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 40px;
+}
+.todo-list li label {
+  display: block;
+  line-height: 1.2;
+  margin-left: 30px;
+  padding: 10px 30px 10px 10px;
+  transition: color 0.4s ease 0s;
+  white-space: pre;
+  font-weight:normal;
+}
+
+.todo-list li.editing {
+    border-bottom: none;
+    padding: 0;
+}
+
+.todo-list li.editing .edit {
+  display: block;
+  margin: 0;
+  padding: 10px;
+  padding-left: 38px;
+}
+
+
+.todo-list li.editing .view {
+    display: none;
+}
+
+footer p{
+    margin: 10px 0;
+}

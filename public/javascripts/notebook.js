@@ -30,11 +30,26 @@ jQuery(function ($) {
         cacheElements: function () {
             this.$notebook = $('#notebook');
             this.$newNotePad = this.$notebook.find('.notepad.new .new-todo');
+            this.$todoList = this.$notebook.find('.todo-list');
         },
         bindEvents: function () {
+            var list = this.$todoList;
             this.$notebook.on('keyup', '.new-todo', this.createNotePad.bind(this));
+            list.on('dblclick', 'label', this.editNote.bind(this));
+            list.on('focusout', '.edit', this.updateNote.bind(this));
         },
-        render: function () {
+        editNote: function (e) {
+            var $input = $(e.target).closest('li').addClass('editing').find('.edit');
+            $input.val($input.val()).focus();
+        },
+        updateNote: function (e) {
+            var el = e.target;
+            var $el = $(el);
+            var val = $el.val().trim();
+
+            this.renderNote();
+        },
+        renderNote: function () {
         },
         createNotePad: function (e){
             var $input = $(e.target);

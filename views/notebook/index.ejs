@@ -7,9 +7,17 @@
   <div class="notepad col-md-4 {{ padType }}">
     <div class="well yellow">
         <header class="header">
+            <div class="view">
+                <label>{{ padName }}</label>
+            </div>
             <input autofocus="" placeholder="Enter A title for the Notepad." class="new-todo">
         </header>
         <section class="notepad-body">
+            <header class="header">
+                <input autofocus="" placeholder="Please enter a new Note." class="new-todo">
+            </header>
+            <section class="notes">
+            </section>
         </section>
         <footer class="footer">
         <div class="row">
@@ -20,105 +28,7 @@
     </div>
   </div>
 </script>
-<style>
-    .yellow{ background:#ffc; }
-    .green{ background:#cfc; }
-    .blue { background:#ccf; }
-    .red{ background:#f24a4a; }
-    .purple{ background:#eaafe3; }
-    .orange{ background:#f28e50; }
-    #notebook{
-        margin-top:40px;
-    }
-    .notepad-body:before {
-        /*border-left: 1px solid #F5D6D6;
-        border-right: 1px solid #F5D6D6;*/
-        content: "";
-        height: 100%;
-        left: 40px;
-        position: absolute;
-        top: 0;
-        width: 2px;
-    }
-    .notepad {
-        margin-bottom:30px;
-    }
-    .notepad .well{
-        padding: 15px 15px 15px 15px;
-        min-height: 150px;
-        -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.5);
-        -moz-box-shadow: 0 2px 12px rgba(0,0,0,.5);
-        box-shadow: 0 1px 2px #000;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
-        -webkit-transform: rotate(-.2deg);
-        -moz-transform: rotate(-.2deg);
-        -o-transform: rotate(-.2deg);*/
-    }
-
-    .notepad header {
-        background: none repeat scroll 0 0 #8D7D77;
-        border-bottom: 1px solid #6C615C;
-        border-top-left-radius: 1px;
-        border-top-right-radius: 1px;
-    }
-
-
-    .new-todo {
-        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.02);
-        border: medium none;
-        box-shadow: none;
-        padding: 16px 16px 16px 60px;
-        z-index: 2;
-    }
-
-    .new-todo, .edit {
-        -moz-box-sizing: border-box;
-        /*border: 1px solid #999999;*/
-        box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.2) inset;
-        color: inherit;
-        font-family: inherit;
-        font-size: 24px;
-        line-height: 1.4em;
-        margin: 0;
-        outline: medium none;
-        padding: 6px;
-        position: relative;
-        width: 100%;
-    }
-    .note-date{
-        font-size: 10px;
-    }
-
-    .notepad input::-moz-placeholder {
-        /*color: #A9A9A9;*/
-        color: #EEE;
-        font-style: italic;
-    }
-    .notepad-body{
-        min-height: 100px;
-    }
-
-    .notepad .edit {
-        display: none;
-    }
-
-    .notepad .header label {
-      font-size: 24px;
-      display: block;
-      line-height: 1.2;
-      padding: 6px;
-      transition: color 0.4s ease 0s;
-      white-space: pre;
-      margin:0;
-    }
-
-
-
-</style>
+<style></style>
 
 <div class="page-header text-center container-fluid">
     <div class="row">
@@ -140,6 +50,31 @@
                         <input autofocus="" placeholder="<%= notepad.name %>" class="new-todo edit">
                     </header>
                     <section class="notepad-body">
+                        <header class="header">
+                            <input autofocus="" placeholder="Please enter a new Note." class="new-todo">
+                        </header>
+                        <section class="notes">
+                            <input class="toggle-all" type="checkbox">
+                            <label for="toggle-all">Mark all as complete</label>
+                            <ul class="todo-list">
+                                <li data-id="5443b4dc-0455-42d0-abb7-6db7873f644f">
+                                    <div class="view">
+                                        <input type="checkbox" class="toggle">
+                                        <label>nothing</label>
+                                        <!-- <button class="destroy"></button> -->
+                                    </div>
+                                    <input value="nothing" class="edit">
+                                </li>
+                                <li data-id="5443b4dc-0455-42d0-abb7-6db7873f644f">
+                                    <div class="view">
+                                        <input type="checkbox" class="toggle">
+                                        <label>nothing</label>
+                                        <!-- <button class="destroy"></button> -->
+                                    </div>
+                                    <input value="nothing" class="edit">
+                                </li>
+                            </ul>
+                        </section>
                     </section>
                     <footer class="footer">
                     <div class="row">

@@ -189,3 +189,9 @@ label[for="toggle-all"] {
 footer p{
     margin: 10px 0;
 }
+.view input {
+    display: none;
+}
+.view input.new-todo {
+    display: block;
+}

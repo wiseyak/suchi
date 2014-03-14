@@ -61,15 +61,80 @@ module.exports = function(app, passport) {
 
         var notepad = new NotePad({
             user_id: req.user._id,
-            name: req.body.title,
+            //name: req.body.title,
+            name :'new note',
             date_created: Date.now(),
             date_updated: Date.now(),
             pinned: false,
             active: true
-        }).save( function( err, notepad, count ){
-            res.send(notepad);
+        });
+
+        /*notepad.findById(req.Notepad._id,function(err,notepad){
+            var notes = notepad.note.create({
+                content: req.body.content,
+                complete: false
+            });
+
+            notepad.note.push(notes);
+
+        });*/
+        notepad.save( function( err ){
+            //id 
+           // if(err)console.dir(err);
+            res.json({id: notepad._id});
         });
         //console.log(req);
+
+    });
+
+    
+     app.put('/notebooktitle/edit', isLoggedIn, function(req, res) {
+
+        var title = req.body.title;
+        console.log(title);
+     //   var notepad = new NotePad();
+
+        NotePad.findOne({_id: req.body.id},function(err,notepad){
+
+
+
+            console.dir(notepad);
+            notepad.name = title;
+           notepad.save(function(err) {
+            if(err) throw err;
+            res.send(notepad);
+      });
+
+        });
+    });
+        /*notepad.findById(req.Notepad._id,function(err,notepad){
+            var notes = notepad.note.create({
+                content: req.body.content,
+                complete: false
+            });
+
+            notepad.note.push(notes);
+
+        });*/
+      
+        //console.log(req);
+
+
+
+
+
+    app.post('/notebook/new/:id',isLoggedIn, function(req, res) {
+        Notepad.findById(req.params.id,function(err,notes,notepad){
+            var notes = notepad.note.create({
+                content: req.body.content,
+                complete: false
+            });
+
+            notepad.note.push(notes);
+            notepad.save( function( err, notepad, count ){
+            res.send(notepad);
+         });
+        });
 
     });
 

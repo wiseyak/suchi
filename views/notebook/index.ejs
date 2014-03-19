@@ -8,14 +8,17 @@
     <div class="well yellow">
         <header class="header">
             <div class="view">
-                <label>{{ padName }}</label>                
-                <input autofocus="" placeholder="Enter A title for the Notepad." class="new-todo">
+                <input autofocus="" placeholder="Enter A title for the Notepad." type='text' id = 'new-todo' class="new-todo">
+                
             </div>
             
         </header>
         <section class="notepad-body">
             <header class="header">
-                <input autofocus="" placeholder="Please enter a new Note." class="new-note">
+                <input autofocus="" placeholder="Please enter a new Note." class="new-note {{ padType }}">
+               <a href="#" id="add_item" class="btn btn-mini" role="button"><span class="glyphicon glyphicon-plus"></span></a>
+
+
             </header>
             <section class="notes">
             </section>
@@ -29,6 +32,9 @@
     </div>
   </div>
 </script>
+
+
+
 <style></style>
 
 <div class="page-header text-center container-fluid">
@@ -45,8 +51,12 @@
                 <div class="well yellow">
                     <header class="header">
                         <div class="view">
+                            <a href="#" id="remove_notepad" class="btn btn-mini" role="button" style="float:right">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                             </a>
                             <label><%= notepad.name %></label>
                             <input type='text' value = '<%= notepad.name %>' />
+                            
                             <!-- <button class="destroy"></button> -->
                         </div>
                         <input autofocus="" placeholder="<%= notepad.name %>" class="edit">
@@ -57,21 +67,22 @@
                             
                             <label for="toggle-all">Mark all as complete</label>
                             <ul class="todo-list">
+                              
                                 <li data-id="5443b4dc-0455-42d0-abb7-6db7873f644f">
                                     <div class="view">
-                                        
-                                       <!-- <label>nothing</label> -->
+                                        <a href="#" id="add_item" class="btn btn-mini" role="button" style="float:right">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                             </a>
+                                        <% notepad.note.forEach(function(noteitem){ %>
+                                        <div id = 'noteitem-<%= noteitem._id %>' class='noteitem' data-noteid='<%= noteitem._id %>'>
+                                            <label ><%= noteitem.content %><a href="#" id="remove_item" class="btn btn-mini" role="button" style="float:right"><span class="glyphicon glyphicon-minus"></span></a>
+                                            </label>
+                                            <input type='text' value = '<%= noteitem.content %>' />
+                                        </div>
+
+                                            <% }); %>
                                         <!-- <button class="destroy"></button> -->
-                                        <input autofocus="" placeholder="<% notepad.name %>" class="edit">
-                                    </div>
-                                    <input value="nothing" class="edit">
-                                </li>
-                                <li data-id="5443b4dc-0455-42d0-abb7-6db7873f644f">
-                                    <div class="view">
-                                        <input type="checkbox" class="toggle">
-                                        <label><% notepad.notes %></label>
-                                        <label>nothing</label>
-                                        <!-- <button class="destroy"></button> -->
+                                   
                                     </div>
                                     <input value="nothing" class="edit">
                                 </li>

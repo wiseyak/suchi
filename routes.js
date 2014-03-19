@@ -50,6 +50,7 @@ module.exports = function(app, passport) {
 
     app.get('/notebook', isLoggedIn, function(req, res) {
         NotePad.find( function ( err, notepads, count ){
+          //  console.dir(notepads[0].note);
         res.render('notebook/index', {
             user : req.user,
             notepads: notepads
@@ -107,36 +108,90 @@ module.exports = function(app, passport) {
 
         });
     });
-        /*notepad.findById(req.Notepad._id,function(err,notepad){
-            var notes = notepad.note.create({
-                content: req.body.content,
+
+    app.put('/noteitem/:id', isLoggedIn, function(req, res) {
+
+        //var title = req.body.title;
+        //console.log(title);
+     //   var notepad = new NotePad();
+
+        NotePad.findOne({_id: req.params.id},function(err,notepad){
+
+
+
+            console.dir(notepad);
+
+         //   notepad.note.content = req.body.title;
+         //   notepad.note.complete = false;
+            var notes = ({
+                content: req.body.title,
+                notepad_id: req.params.id,
                 complete: false
             });
-
             notepad.note.push(notes);
-
-        });*/
-      
-        //console.log(req);
-
-
-
-
-
-    app.post('/notebook/new/:id',isLoggedIn, function(req, res) {
-        Notepad.findById(req.params.id,function(err,notes,notepad){
-            var notes = notepad.note.create({
-                content: req.body.content,
-                complete: false
-            });
-
-            notepad.note.push(notes);
-            notepad.save( function( err, notepad, count ){
+           notepad.save(function(err) {
+            if(err) throw err;
             res.send(notepad);
-         });
-        });
+      });
 
+        });
     });
+        
+app.put('/noteitem/edit/:id',isLoggedIn, function(req,res){
+  var id = req.params.id;
+  NotePad.findById(id, function(err, notepad){
+
+    notepad.note.pull({_id: req.body.id});
+     var notes = ({
+                content: req.body.title,
+                notepad_id: req.params.id,
+                complete: false
+            });
+    notepad.note.push(notes);
+      notepad.save(function(err) {
+            if(err) throw err;
+            res.send(notepad);
+      });
+
+  });
+
+});
+
+app.del('/notepad/remove/:id',isLoggedIn, function(req,res){
+    var id = req.params.id;
+    NotePad.findById(id, function(err, notepad) {
+       // notepad.pull({_id: req.params.id});
+
+      notepad.remove(function(err) {
+        if(err) throw err;
+    });
+           notepad.save(function(err) {
+            if(err) throw err;
+            res.send(notepad);
+          });
+
+      });
+
+
+});
+
+
+app.del("/noteitem/remove/:id",isLoggedIn, function(req,res){
+  var id = req.params.id;
+  NotePad.findById(id, function(err, notepad) {
+      
+     notepad.note.pull({_id: req.body.id});
+
+     // contact.remove(function(err) {
+           notepad.save(function(err) {
+            if(err) throw err;
+            res.send(notepad);
+      });
+
+      });
+});
+
+
 
 };
 
